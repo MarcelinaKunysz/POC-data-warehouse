@@ -17,10 +17,14 @@ def import_excel_to_db(excel_file, db=DATABASE_PATH):
 
     print(f"Processing contract: {contract_id}")
 
+    #Check if db folder exist if not create it - function from database.py
+    create_db_folder_if_not_exist()
+    
     # Database connection
     conn = sqlite3.connect(db)
 
     try:
+        # Check if database and tables exist - function from database.py
         check_database_ready(conn)
         # Adding contract to ID CONTRACT table - function from database.py
         add_contract_id(conn, contract_id)
@@ -68,8 +72,8 @@ if __name__ == "__main__":
     # Find all contracts and files - function from file_utils.py
     found, not_found = find_all_contracts_with_files()
 
-    print(f"Found {len(found)} contracts with files to process")
-    print(f"Found {len(not_found)} contracts without files")
+    print(f"Found {len(found)} contract files to process")
+    print(f"Found {len(not_found)} contract files missing")
 
     # Counters
     processed = 0

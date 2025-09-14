@@ -4,6 +4,7 @@
 import sqlite3
 from config import *
 from schema import create_tables_if_not_exist
+import os
 
 
 def add_contract_id(conn, contract_id):
@@ -37,6 +38,11 @@ def delete_contract_data(conn, contract_id, table_name):
         (contract_id,),
     )
     conn.commit()
+
+
+def create_db_folder_if_not_exist():
+    if not os.path.exists(DATABASE_FOLDER):
+        os.makedirs(DATABASE_FOLDER)
 
 
 def check_database_ready(conn):
