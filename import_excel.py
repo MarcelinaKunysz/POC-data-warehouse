@@ -17,9 +17,9 @@ def import_excel_to_db(excel_file, db=DATABASE_PATH):
 
     print(f"Processing contract: {contract_id}")
 
-    #Check if db folder exist if not create it - function from database.py
+    # Check if db folder exist if not create it - function from database.py
     create_db_folder_if_not_exist()
-    
+
     # Database connection
     conn = sqlite3.connect(db)
 

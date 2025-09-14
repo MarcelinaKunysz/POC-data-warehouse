@@ -7,7 +7,7 @@ DATABASE_FOLDER = "DB"
 DATABASE_PATH = f"{DATABASE_FOLDER}/{DATABASE_NAME}"
 CONTRACTS_FILE = "projects.txt"
 FILE_EXTENSION = ".xlsx"
-SPREADSHEETS_PATH = "spreadsheets"
+WORKBOOKS_PATH = "workbooks"
 
 # Table names
 TABLE_VARIANCE = "Project Costs"

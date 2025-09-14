@@ -27,7 +27,7 @@ def load_numbers_from_txt():
 
 def find_excel_files():
     """Finds all Excel files in directory"""
-    all_files = glob.glob(f"{SPREADSHEETS_PATH}/*{FILE_EXTENSION}")
+    all_files = glob.glob(f"{WORKBOOKS_PATH}/*{FILE_EXTENSION}")
     debug(f"Found the Excel files. {all_files}")
     return all_files
 

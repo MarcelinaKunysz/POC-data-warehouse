@@ -1,8 +1,8 @@
-# 📄 README
+# README
 
 ## Project description
 
-This project automatically imports data from Excel files into a SQLite database.
+This project imports data from Excel files into a SQLite database.
 The goal is to collect contract information (budget, basic details, working hours) in one place for further analysis (e.g., Power BI).
 
 ---
@@ -16,7 +16,7 @@ The goal is to collect contract information (budget, basic details, working hour
 | 3    | excel_reader.py | Reads data from Excel sheets (budget, basic info, hours) |
 | 4    | schema.py       | Defines database schema (table structure)                |
 | 5    | database.py     | Handles DB operations (CRUD + auto-create schema)        |
-| 6    | import_excel.py | Main script – automatically imports                      |
+| 6    | import_excel.py | Main script – coordinates import process                 |
 
 ---
 
@@ -56,7 +56,7 @@ This diagram shows how data flows from Excel files into the database.
 flowchart TD
     %% RUNTIME DATA FLOW (who calls whom)
     P["projects.txt"] --> FU["file_utils.py<br/>find Excel files"]
-    FU --> IE["import_excel.py<br/>orchestrates flow"]
+    FU --> IE["import_excel.py<br/>coordinates import process"]
 
     IE --> ER["excel_reader.py<br/>read Excel sheets"]
     IE --> DBM["database.py<br/>CRUD + auto-create schema"]
@@ -87,7 +87,7 @@ flowchart TD
 | excel_reader.py | Reads Excel sheets → returns DataFrames (budget, basic, hours)  |
 | schema.py       | Defines the SQLite schema (table structures only)               |
 | database.py     | Database operations (insert, delete, check, auto-create schema) |
-| import_excel.py | Main script automatically imports                               |
+| import_excel.py | Main script – coordinates import process                        |
 
 ---
 
@@ -101,7 +101,7 @@ flowchart TD
 2. **Add contract numbers**
 
    - Add entries like `1_2025`, `2_2025` to `projects.txt` (one per line).
-   - Place matching Excel files in `spreadsheets/` (e.g., `./spreadsheets/1_2025.xlsx`).
+   - Place matching Excel files in `workbooks/` (e.g., `./workbooks/1_2025.xlsx`).
 
 3. **Import data**
 
@@ -113,7 +113,7 @@ You should see a summary with how many contracts were processed and database sta
 
 ---
 
-## Notes
+## Important Details
 
 - Column names and sheet ranges are controlled in `config.py`.
 - Tables are created automatically on first run.
@@ -128,17 +128,8 @@ You should see a summary with how many contracts were processed and database sta
 
 ## TODO / Future Improvements
 
-### Basic Improvements
-
 - **Better error messages**: Show which Excel sheet/cell caused errors
 - **Input validation**: Check if Excel files have required sheets before processing
-
-### Simple Enhancements
-
 - **Summary report**: Generate simple text report after import
-- **Configuration file**: Move hardcoded values from config.py to .env file
-
-### Next Steps (when ready)
-
 - **GUI interface**: Simple desktop app instead of command line
 - **Data backup**: Manual backup command before major imports
